@@ -1,0 +1,18 @@
+CREATE DATABASE controle_biblioteca;
+
+CREATE TABLE `author` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `book` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) NOT NULL,
+  `Date` date NOT NULL,
+  `Status` enum('DISPONIVEL','EMPRESTADO','INDISPONIVEL') NOT NULL,
+  `AuthorId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `AuthorId` (`AuthorId`),
+  CONSTRAINT `book_ibfk_1` FOREIGN KEY (`AuthorId`) REFERENCES `author` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
